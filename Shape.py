@@ -1,30 +1,41 @@
-import abc
+from abc import ABC, abstractmethod
 
 
-class Shape(metaclass=abc.ABCMeta):
+class Shape(ABC):
+    def __init__(self, name):
+        self.name = name
+        # self.drawer = Shape.draw()
 
-    def __init__(self, shape_name):
-        self.shape_name = shape_name
+    @property
+    def get_name(self):
+        return self.name
 
-    @abc.abstractmethod
-    def area(self):
-        return NotImplemented
+    @abstractmethod
+    def validation(self):
+        pass
 
-    @abc.abstractmethod
+    @abstractmethod
     def perimeter(self):
-        return NotImplemented
+        pass
+
+    @abstractmethod
+    def area(self):
+        pass
+
+    @abstractmethod
+    def __str__(self):
+        return self.name
 
     def draw(self):
-        print(self.shape_name, "area: ", self.area(), "perimeter: ", self.perimeter())
+        print(f"name_of_shape {self.name}, area: {self.area()}, perimeter: {self.perimeter()}")
 
-    def __str__(self):
-        return "%s:%s:%s" % (self.shape_name, self.area, self.perimeter)
+    @abstractmethod
+    def draw_graphic(self):
+        pass
 
-    @classmethod
-    def __subclasshook__(cls, C):
-        if cls is Shape:
-            attrs = set(dir(C))
-            if set(cls.__abstractmethods__) <= attrs:
-                return True
+    def __lt__(self, other):
+        return (self.name, self.area(), self.perimeter()) < (other.name, other.area(), other.perimeter())
 
+    def __eq__(self, other):
+        return (self.name, self.area(), self.perimeter()) == (other.name, other.area(), other.perimeter())
 
