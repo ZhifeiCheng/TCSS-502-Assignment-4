@@ -1,47 +1,35 @@
-from ShapeFactory import ShapeFactory
 from DrawingProgram import DrawingProgram
-from DrawingProgramIterator import DrawingProgramIterator
-from Shape import Shape
+from ShapeFactory import ShapeFactory
 
 
 class DrawingProgramMain:
-    drawing_program = DrawingProgram()
+    @staticmethod
+    def main():
+        drawing_program = DrawingProgram()
+        circle_1 = ShapeFactory.create_shape("Circle", 20)
+        circle_2 = ShapeFactory.create_shape("Circle", 60)
+        circle_3 = ShapeFactory.create_shape("Circle", 80)
+        rectangle_1 = ShapeFactory.create_shape("Rectangle", 80, 120)
+        square_1 = ShapeFactory.create_shape("Square", 100)
+        square_2 = ShapeFactory.create_shape("Square", 100)
+        drawing_program.add_shape(square_1)
+        drawing_program.add_shape(rectangle_1)
+        drawing_program.add_shape(rectangle_1)
+        drawing_program.add_shape(rectangle_1)
+        drawing_program.add_shape(rectangle_1)
+        drawing_program.add_shape(circle_1)
+        drawing_program.add_shape(square_2)
+        drawing_program.add_shape(circle_2)
+        drawing_program.add_shape(circle_3)
+        drawing_program.remove_shape(square_2)
+        drawing_program.sort_shape()
+        drawing_program.print_shape(circle_2)
+        drawing_program.get_shape(2)
+        drawing_program.set_shape(4, square_2)
+        for shape in drawing_program:
+            shape.draw()
+            shape.draw_graphic()
 
-    shape_factory = ShapeFactory()
 
-    print(" ")
-    print(" ------------Creating Shapes------------")
-    drawing_program.add_shape(shape_factory.create_shape('circle', 1.0))
-    drawing_program.add_shape(shape_factory.create_shape('circle', 1.0))
-    drawing_program.add_shape(shape_factory.create_shape('square', 3.0))
-    drawing_program.add_shape(shape_factory.create_shape('rectangle', 1.0, 2.0))
-    drawing_program.add_shape(shape_factory.create_shape('triangle', 3.0, 4.0, 5.0))
-    drawing_program.add_shape(shape_factory.create_shape('circle', 3.0))
-    drawing_program.add_shape(shape_factory.create_shape('square', 5.0))
-    drawing_program.add_shape(shape_factory.create_shape('rectangle', 5.0, 2.0))
-    drawing_program.add_shape(shape_factory.create_shape('triangle', 5.0, 12.0, 13.0))
-    drawing_program.add_shape(shape_factory.create_shape('triangle', 12.0, 16.0, 20.0))
-
-    iterable = DrawingProgramIterator(drawing_program.shapes)
-    for shape in iterable:
-        Shape.draw(shape)
-
-    print("  ")
-    print("----------------Removing Shapes-----------")
-    """ The get_shape below passes an 'index' based on the above create shapes to get the shape.
-    We can pick a different shape by manually changing the index below. 
-    The may have to be improved"""
-    shape = drawing_program.get_shape(4)
-    drawing_program.remove_shape(shape)
-    print('REMOVED SHAPE:', shape.shape_name)
-    print(' ')
-    iterable1 = DrawingProgramIterator(drawing_program.shapes)
-    for shape1 in iterable1:
-        Shape.draw(shape1)
-
-    print(" ")
-    print("-------Sorting Shapes (based on shape name  and then area-------")
-    iterable2 = DrawingProgramIterator(drawing_program.sort_shapes())
-    for shape2 in iterable2:
-        Shape.draw(shape2)
-    print(" ")
+if __name__ == "__main__":
+    DrawingProgramMain.main()
