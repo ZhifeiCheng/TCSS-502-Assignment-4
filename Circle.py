@@ -6,7 +6,7 @@ from turtle import Turtle, delay
 class Circle(Shape):
     """
     The Circle class is a child class of Shape. 
-    It provides provide specific implementations of area and perimeter for circles. 
+    It provides provide specific implementations of area, perimeter, and graphics of circles. 
     """
     
     def __init__(self, name: str, radius: float):
