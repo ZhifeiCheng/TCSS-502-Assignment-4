@@ -131,22 +131,22 @@ class MyTests(unittest.TestCase):
     def test_returns_circle(self):
         shape = ShapeFactory.create_shape("Circle", 1.0)
         self.assertEqual(vars(shape), vars(Circle("Circle", 1.0)),
-                         "Shape factory does not return Circle object")
+                         "Shape factory does not return Circle")
 
     def test_returns_square(self):
         shape = ShapeFactory.create_shape("Square", 1.0)
         self.assertEqual(vars(shape), vars(Square("Square", 1.0)),
-                         "Shape factory does not return Square object")
+                         "Shape factory does not return Square")
 
     def test_returns_rectangle(self):
         shape = ShapeFactory.create_shape("Rectangle", 1.0, 1.0)
         self.assertEqual(vars(shape), vars(Rectangle("Rectangle", 1.0, 1.0)),
-                         "Shape factory does not return rectangle object")
+                         "Shape factory does not return Rectangle")
 
     def test_returns_triangle(self):
         shape = ShapeFactory.create_shape("Triangle", 3.0, 4.0, 5.0)
         self.assertEqual(vars(shape), vars(Triangle("Triangle", 3.0, 4.0, 5.0)),
-                         "Shape factory does not return triangle object")
+                         "Shape factory does not return Triangle")
 
 
 if __name__ == '__main__':
