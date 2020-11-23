@@ -146,7 +146,7 @@ class MyTests(unittest.TestCase):
     def test_returns_triangle(self):
         shape = ShapeFactory.create_shape("Triangle", 3.0, 4.0, 5.0)
         self.assertEqual(vars(shape), vars(Triangle("Triangle", 3.0, 4.0, 5.0)),
-                         "Shape factory does not return rectangle object")
+                         "Shape factory does not return triangle object")
 
 
 if __name__ == '__main__':
