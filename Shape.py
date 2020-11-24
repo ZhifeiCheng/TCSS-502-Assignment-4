@@ -27,7 +27,7 @@ class Shape(ABC):
         return self.name
 
     def draw(self):
-        print(f"name_of_shape {self.name}, area: {self.area()}, perimeter: {self.perimeter()}")
+        print(f"{self.name}, area: {self.area():.2f}, perimeter: {self.perimeter():.2f}")
 
     @abstractmethod
     def draw_graphic(self):

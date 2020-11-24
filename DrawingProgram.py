@@ -10,7 +10,7 @@ class DrawingProgram:
         self.__shape_list.append(shape)
 
     def remove_shape(self, shape: Shape):
-        remain = list(filter(lambda x: x is not shape, self.__shape_list))
+        remain = list(filter(lambda x: x != shape, self.__shape_list))
         count = len(self.__shape_list) - len(remain)
         self.__shape_list = remain
         return count
@@ -22,13 +22,13 @@ class DrawingProgram:
                 shape.draw_graphic()
 
     def get_shape(self, index: int) -> Shape:
-        if 0 <= index < len(self.__shape_list):
+        if len(self.__shape_list) > 0 and 0 <= index < max(len(self.__shape_list), 1):
             return self.__shape_list[index]
         else:
             raise ValueError("index is out of range")
 
     def set_shape(self, index: int, shape: Shape):
-        if 0 <= index < len(self.__shape_list):
+        if len(self.__shape_list) > 0 and 0 <= index < len(self.__shape_list):
             self.__shape_list[index] = shape
         else:
             raise ValueError("index is out of range")
@@ -59,14 +59,13 @@ class DrawingProgram:
                 lst[k] = left[i]
                 i += 1
                 k += 1
-            while j < len(left):
-                lst[k] = left[j]
+            while j < len(right):
+                lst[k] = right[j]
                 j += 1
                 k += 1
 
     def __str__(self):
-        for shape in self.__shape_list:
-            print(f"{shape}\n")
+        return "\n".join(map(lambda shape: shape.get_name, self.__shape_list))
 
     def __iter__(self):
         return DrawingProgramIterator(self.__shape_list)

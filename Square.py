@@ -23,20 +23,30 @@ class Square(Shape):
         return self.name
 
     def draw(self):
-        print(f"name_of_shape {self.name}, area: {self.area()}, perimeter: {self.perimeter()}")
+        print(f"{self.name}, area: {self.area()}, perimeter: {self.perimeter()}")
 
     def draw_graphic(self):
         t = Turtle()
+        text = Turtle()
         s = t.getscreen()
-        s.bgcolor("orange")
+        s.bgcolor("purple")
         count = 0
         while count < 1:
-            t.write("name_of_shape {}, area: {}, perimeter: {}".format(self.name, self.area(), self.perimeter()))
-            t.pen(pencolor="purple", fillcolor="green", pensize=6, speed=800)
+            text.penup()
+            text.setposition(-100, -100)
+            text.pencolor("yellow")
+            text.write("{}, area: {:.2f}, perimeter: {:.2f}".format(self.name, self.area(), self.perimeter()), align="left",
+                    font=("Arial", 20, "bold"))
+            t.pen(pencolor="yellow", fillcolor="green", pensize=6, speed=800)
             for edge in range(4):
+                t.fillcolor("red")
+                t.begin_fill()
                 t.forward(self.__side_length)
-                delay(100)
+                delay(50)
                 t.left(self.angle)
+                t.end_fill()
             t.clear()
             t.reset()
+            text.clear()
+            text.reset()
             count += 1

@@ -31,7 +31,7 @@ class Triangle(Shape):
         return self.name
 
     def draw(self):
-        print(f"name_of_shape {self.name}, area: {self.area()}, perimeter: {self.perimeter()}")
+        print(f"{self.name}, area: {self.area()}, perimeter: {self.perimeter()}")
 
     def angle_a(self):
         angle_radians = math.acos((self.__b ** 2 + self.__c ** 2 - self.__a ** 2) / (2 * self.__b * self.__c))
@@ -47,12 +47,19 @@ class Triangle(Shape):
 
     def draw_graphic(self):
         t = Turtle()
+        text = Turtle()
         s = t.getscreen()
-        s.bgcolor("orange")
+        s.bgcolor("blue")
         count = 0
         while count < 1:
-            t.write("name_of_shape {}, area: {}, perimeter: {}".format(self.name, self.area(), self.perimeter()))
-            t.pen(pencolor="purple", fillcolor="green", pensize=6, speed=800)
+            text.penup()
+            text.setposition(-100, -100)
+            text.pencolor("yellow")
+            text.write("{}, area: {:.2f}, perimeter: {:.2f}".format(self.name, self.area(), self.perimeter()), align="left",
+                    font=("Arial", 20, "bold"))
+            t.pen(pencolor="yellow", fillcolor="green", pensize=6, speed=800)
+            t.fillcolor("red")
+            t.begin_fill()
             t.forward(self.__a)
             delay(100)
             t.left(180 - self.angle_c())
@@ -61,7 +68,11 @@ class Triangle(Shape):
             t.left(180 - self.angle_a())
             t.forward(self.__c)
             delay(100)
+            t.end_fill()
             t.clear()
             t.reset()
+            text.clear()
+            text.reset()
             count += 1
+
 
