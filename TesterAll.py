@@ -174,6 +174,10 @@ class MyTests(unittest.TestCase):
         drawing_program.sort_shape()
         for i in range(len(shapes)):
             self.assertEqual(shapes[i], drawing_program.get_shape(i), "shapes not sorted properly")
+            
+    """
+    2) DrawingProgramIterator class functionality tests
+    """
 
     def test_looping_no_shapes(self):
         lst = []
