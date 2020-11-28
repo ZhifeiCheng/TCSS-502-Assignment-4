@@ -10,17 +10,25 @@ from DrawingProgramIterator import DrawingProgramIterator
 
 
 class MyTests(unittest.TestCase):
+    """
+    This class contains unit tests to ensure proper functionality of the programs for Assignment 4.
+    """
 
     """
     1) DrawingProgram class functionality tests
     """
+    
+    """Adding shapes. Also demonstrates different types of shapes can be properly created."""
+    
     def test_add_shape_one_shape(self):
+        """Demonstrates that one shape can be added."""
         shape = Square("Square", 30)
         drawing_program = DrawingProgram()
         drawing_program.add_shape(shape)
         self.assertIs(shape, drawing_program.get_shape(0), "one shape not added to the drawing program properly")
 
     def test_add_shape_multiple_shapes(self):
+        """Demonstrates thtat multiple shapes can be added."""
         shape_1 = Square("Square", 30)
         shape_2 = Circle("Circle", 50)
         shape_3 = Triangle("Triangle", 30, 40, 50)
@@ -32,6 +40,7 @@ class MyTests(unittest.TestCase):
             self.assertIs(shape_list[i], drawing_program.get_shape(i), "multiple shapes not added to drawing program properly")
 
     def test_add_shape_duplicated_shapes(self):
+        """Demonstrates that duplicated shapes can be added."""
         shape_1 = Square("Square", 30)
         shape_2 = Square("Square", 30)
         shape_3 = Square("Square", 30)
@@ -42,7 +51,10 @@ class MyTests(unittest.TestCase):
         for i in range(len(shape_list)):
             self.assertIs(shape_list[i], drawing_program.get_shape(i), "duplicated shapes not added to drawing program properly")
 
+    """Removing shapes."""
+    
     def test_remove_shape_one_shape(self):
+        """Demonstrates that one shape can be removed."""
         shape_1 = Square("Square", 30)
         shape_2 = Circle("Circle", 50)
         shape_3 = Triangle("Triangle", 30, 40, 50)
@@ -57,6 +69,7 @@ class MyTests(unittest.TestCase):
         self.assertIs(removed_shapes[0], shape_2)
 
     def test_remove_shape_duplicated_shapes(self):
+        """Demonstrates that duplicated shapes can be removed."""
         shape_1 = Square("Square", 30)
         shape_2 = Circle("Circle", 50)
         shape_3 = Triangle("Triangle", 30, 40, 50)
@@ -71,7 +84,10 @@ class MyTests(unittest.TestCase):
         self.assertIs(removed_shapes[0], shape_2)
         self.assertIs(removed_shapes[1], shape_4)
 
+    """Printing shapes."""
+    
     def test_print_shape(self):
+        """Demonstrates shapes can be printed."""
         shape_1 = Square("Square", 30)
         shape_2 = Circle("Circle", 50)
         shape_3 = Triangle("Triangle", 30, 40, 50)
@@ -81,7 +97,10 @@ class MyTests(unittest.TestCase):
         for shape in shape_list:
             drawing_program.add_shape(shape)
 
+    """Testing given indeces."""
+    
     def test_get_shape_negative_index(self):
+        """Demonstrates proper handling of a negative index for get_shape."""
         drawing_program = DrawingProgram()
         try:
             drawing_program.get_shape(-1)
@@ -90,6 +109,7 @@ class MyTests(unittest.TestCase):
             self.assertEqual(True, True)
 
     def test_get_shape_valid_index(self):
+        """Demonstrates get_shape is functional when given a valid index."""
         shape_1 = Square("Square", 30)
         shape_2 = Circle("Circle", 50)
         shape_3 = Triangle("Triangle", 30, 40, 50)
@@ -102,6 +122,7 @@ class MyTests(unittest.TestCase):
             self.assertEqual(shapes[idx], drawing_program.get_shape(idx), "shapes not got properly")
 
     def test_set_shape_negative_index(self):
+        """Demonstrates proper handling of a negative index for set_shape."""
         drawing_program = DrawingProgram()
         try:
             drawing_program.set_shape(-1, Square("Square", 30))
@@ -110,6 +131,7 @@ class MyTests(unittest.TestCase):
             self.assertEqual(True, True)
 
     def test_set_shape_valid_index(self):
+        """Demonstrates functionality of set_shape when given a valid index."""
         shape_1 = Square("Square", 30)
         shape_2 = Circle("Circle", 50)
         shape_3 = Triangle("Triangle", 30, 40, 50)
@@ -121,12 +143,16 @@ class MyTests(unittest.TestCase):
         drawing_program.set_shape(2, shape_3)
         self.assertEqual(shape_3, drawing_program.get_shape(2), "shapes not set properly")
 
+    """Sorting shapes. Also demonstrates proper use of of comparing functions."""
+    
     def test_sort_operates_on_empty_list_of_shapes(self):
+        """Demonstrates sorting an empty list of shapes."""
         drawing_program = DrawingProgram()
         drawing_program.sort_shape()
         self.assertEqual("", drawing_program.__str__())
 
     def test_sort_one_shape(self):
+        """Demonstrates sorting of a list of one shape."""
         shape_1 = Square("Square", 30)
         drawing_program = DrawingProgram()
         drawing_program.add_shape(shape_1)
@@ -135,6 +161,7 @@ class MyTests(unittest.TestCase):
         self.assertEqual(shapes[0], drawing_program.get_shape(0), "should be None for drawing program")
 
     def test_multiple_shapes_ascending_order(self):
+        """Demonstrates sorting of a list of multiple shapes with ascending order."""
         shape_1 = Circle("Circle", 30)
         shape_2 = Rectangle("Rectangle", 30, 50)
         shape_3 = Rectangle("Rectangle", 30, 60)
@@ -148,6 +175,7 @@ class MyTests(unittest.TestCase):
             self.assertEqual(shapes[i], drawing_program.get_shape(i), "shapes not sorted properly")
 
     def test_multiple_shapes_descending_order(self):
+        """Demonstrates sorting a list of multiple shapes with descending order."""
         shape_1 = Circle("Circle", 30)
         shape_2 = Rectangle("Rectangle", 30, 50)
         shape_3 = Rectangle("Rectangle", 30, 60)
@@ -161,6 +189,7 @@ class MyTests(unittest.TestCase):
             self.assertEqual(shapes[i], drawing_program.get_shape(i), "shapes not sorted properly")
 
     def test_multiple_shapes_random_order(self):
+        """Demonstrates sorting a list of multiple shapes with random order."""
         shape_1 = Circle("Circle", 30)
         shape_2 = Rectangle("Rectangle", 30, 50)
         shape_3 = Rectangle("Rectangle", 30, 60)
@@ -177,6 +206,8 @@ class MyTests(unittest.TestCase):
             
     """
     2) DrawingProgramIterator class functionality tests
+    Demonstrating the program's ability to iterate 
+    across a collection of no shapes, one shape, or multiple shapes.
     """
 
     def test_looping_no_shapes(self):
@@ -211,9 +242,13 @@ class MyTests(unittest.TestCase):
 
     """
      3) Functionality of Shapes
+     Especially demonstrates proper shape validation.
     """
-
+    
+    """Circles."""
+    
     def test_circle_radius_negative_value(self):
+        """Demonstrates proper handling given a negative radius."""
         try:
             Circle("Circle", -1.0)
             self.assertEqual(True, False, "circle radius is negative")
@@ -221,13 +256,17 @@ class MyTests(unittest.TestCase):
             self.assertEqual(True, True)
 
     def test_circle_radius_zero_value(self):
+        """Demonstrates proper handling given a radius of zero."""
         try:
             Circle("Circle", 0.0)
             self.assertEqual(True, False, "circle radius is zero")
         except ValueError as value_error:
             self.assertEqual(True, True)
 
+    """Squares."""
+    
     def test_square_side_length_negative_value(self):
+        """Demonstrates proper handling given negative side length."""
         try:
             Square("Square", -1.0)
             self.assertEqual(True, False, "square length is negative")
@@ -235,13 +274,17 @@ class MyTests(unittest.TestCase):
             self.assertEqual(True, True)
 
     def test_square_side_length_zero_value(self):
+        """Demonstrates proper handling given a side length of zero."""
         try:
             Square("Square", 0.0)
             self.assertEqual(True, False, "square length is zero")
         except ValueError as value_error:
             self.assertEqual(True, True)
 
+    """Rectangles."""
+    
     def test_rectangle_side_lengths_negative_value(self):
+        """Demonstrates proper handling given negative side length."""
         try:
             Rectangle("Rectangle", -1.0,-1.0)
             self.assertEqual(True, False, "rectangle length is negative")
@@ -249,13 +292,17 @@ class MyTests(unittest.TestCase):
             self.assertEqual(True, True)
 
     def test_rectangle_side_lengths_zero_value(self):
+        """Demonstrates proper handling given side length of zero."""
         try:
             Rectangle("Rectangle", 0.0, 0.0)
             self.assertEqual(True, False, "rectangle length is zero")
         except ValueError as value_error:
             self.assertEqual(True, True)
 
+    """Triangles."""
+    
     def test_triangle_side_lengths_negative_value(self):
+        """Demonstrates proper handling given negative side lenghths."""
         try:
             Triangle("Triangle", -1.0, -1.0, -1.0)
             self.assertEqual(True, False, "triangle length is negative")
@@ -263,6 +310,7 @@ class MyTests(unittest.TestCase):
             self.assertEqual(True, True)
 
     def test_triangle_side_lengths_zero_value(self):
+        """Demonstrates proper handling given side lenghts of zero."""
         try:
             Triangle("Triangle", 0.0, 0.0, 0.0)
             self.assertEqual(True, False, "triangle length is zero")
@@ -275,21 +323,25 @@ class MyTests(unittest.TestCase):
      4) Shape Factory Tests
     """
     def test_returns_circle(self):
+        """Ensures circles can be created."""
         shape = ShapeFactory.create_shape("Circle", 1.0)
         self.assertEqual(vars(shape), vars(Circle("Circle", 1.0)),
                          "Shape factory does not return Circle")
 
     def test_returns_square(self):
+        """Ensures squares can be created."""
         shape = ShapeFactory.create_shape("Square", 1.0)
         self.assertEqual(vars(shape), vars(Square("Square", 1.0)),
                          "Shape factory does not return Square")
 
     def test_returns_rectangle(self):
+        "Ensures rectangles can be created."""
         shape = ShapeFactory.create_shape("Rectangle", 1.0, 1.0)
         self.assertEqual(vars(shape), vars(Rectangle("Rectangle", 1.0, 1.0)),
                          "Shape factory does not return Rectangle")
 
     def test_returns_triangle(self):
+        """Ensures triangles can be created."""
         shape = ShapeFactory.create_shape("Triangle", 3.0, 4.0, 5.0)
         self.assertEqual(vars(shape), vars(Triangle("Triangle", 3.0, 4.0, 5.0)),
                          "Shape factory does not return Triangle")
