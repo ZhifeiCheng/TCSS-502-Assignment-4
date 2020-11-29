@@ -242,7 +242,8 @@ class MyTests(unittest.TestCase):
 
     """
      3) Functionality of Shapes
-     Especially demonstrates proper shape validation.
+     Testing negative and zero values demonstrates proper validation.
+     Testing perimeter and area ensures proper shape creation.
     """
     
     """Circles."""
@@ -262,7 +263,21 @@ class MyTests(unittest.TestCase):
             self.assertEqual(True, False, "circle radius is zero")
         except ValueError as value_error:
             self.assertEqual(True, True)
-
+    
+    def test_circle_perimeter(self):
+        try:
+            circle_perimeter = Circle.perimeter(Circle("Circle", 1.0))
+            self.assertEqual(round(circle_perimeter, 2), 6.28, "circle perimeter is wrong")
+        except ValueError as value_error:
+            self.assertEqual(True, True)
+        
+    def test_circle_area(self):
+        try:
+            circle_area = Circle.area(Circle("Circle", 1.0))
+            self.assertEqual(round(circle_area, 2), 3.14, "circle area is wrong")
+        except ValueError as value_error:
+            self.assertEqual(True,True)
+    
     """Squares."""
     
     def test_square_side_length_negative_value(self):
@@ -280,6 +295,20 @@ class MyTests(unittest.TestCase):
             self.assertEqual(True, False, "square length is zero")
         except ValueError as value_error:
             self.assertEqual(True, True)
+            
+   def test_square_perimeter(self):
+        try:
+            square_perimeter = Square.perimeter(Square("Square", 1.0))
+            self.assertEqual(square_perimeter, 4.0, "square perimeter is wrong")
+        except ValueError as value_error:
+            self.assertEqual(True, True)
+        
+    def test_square_area(self):
+        try:
+            square_area = Square.area(Square("Square", 1.0))
+            self.assertEqual(square_area, 1.0, "square area is wrong")
+        except ValueError as value_error:
+            self.assertEqual(True,True)
 
     """Rectangles."""
     
@@ -298,6 +327,20 @@ class MyTests(unittest.TestCase):
             self.assertEqual(True, False, "rectangle length is zero")
         except ValueError as value_error:
             self.assertEqual(True, True)
+     
+    def test_rectangle_perimeter(self):
+        try:
+            rectangle_perimeter = Rectangle.perimeter(Rectangle("Rectangle", 1.0, 2.0))
+            self.assertEqual(rectangle_perimeter, 6.0, "rectangle perimeter is wrong")
+        except ValueError as value_error:
+            self.assertEqual(True, True)
+        
+    def test_rectangle_area(self):
+        try:
+            rectangle_area = Rectangle.area(Rectangle("Rectangle", 1.0, 2.0))
+            self.assertEqual(rectangle_area, 2.0, "rectangle area is wrong")
+        except ValueError as value_error:
+            self.assertEqual(True,True)
 
     """Triangles."""
     
@@ -316,8 +359,20 @@ class MyTests(unittest.TestCase):
             self.assertEqual(True, False, "triangle length is zero")
         except ValueError as value_error:
             self.assertEqual(True, True)
-
-
+            
+    def test_triangle_perimeter(self):
+        try:
+            triangle_perimeter = Triangle.perimeter(Triangle("Triangle", 2.0, 3.0, 4.0))
+            self.assertEqual(triangle_perimeter, 9.0, "triangle perimeter is wrong")
+        except ValueError as value_error:
+            self.assertEqual(True, True)
+        
+    def test_triangle_area(self):
+        try:
+            triangle_area = Triangle.area(Triangle("Triangle", 2.0, 3.0, 4.0))
+            self.assertEqual(round(triangle_area, 2), 2.90, "triangle area is wrong")
+        except ValueError as value_error:
+            self.assertEqual(True,True)
 
     """
      4) Shape Factory Tests
