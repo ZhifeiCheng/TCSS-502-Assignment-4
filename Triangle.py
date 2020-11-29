@@ -4,7 +4,7 @@ from turtle import Turtle, delay
 
 
 class Triangle(Shape):
-     """
+    """
     The Triangle class is a child class of Shape.
     It provides provide specific implementations of area, perimeter, and graphics of triangles.
     """
@@ -34,7 +34,7 @@ class Triangle(Shape):
     def area(self):
         """Calculates and returns the area of the triangle."""
         s = self.perimeter()/2
-        return math.sqrt(s * (s - self.__a) + s * (s - self.__b) + s * (s - self.__c))
+        return math.sqrt(s * (s - self.__a)*(s - self.__b)*(s - self.__c))
 
     def __str__(self):
         """Returns the name of the triangle."""

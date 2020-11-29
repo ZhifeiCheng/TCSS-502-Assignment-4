@@ -97,7 +97,7 @@ class MyTests(unittest.TestCase):
         for shape in shape_list:
             drawing_program.add_shape(shape)
 
-    """Testing given indeces."""
+    """Testing given index."""
     
     def test_get_shape_negative_index(self):
         """Demonstrates proper handling of a negative index for get_shape."""
@@ -245,9 +245,18 @@ class MyTests(unittest.TestCase):
      Testing negative and zero values demonstrates proper validation.
      Testing perimeter and area ensures proper shape creation.
     """
-    
+    """Shape"""
+    def test_get_name(self):
+        shape = ShapeFactory.create_shape("Circle", 1.0)
+        self.assertEqual(shape.name, "Circle", "shape name not got properly")
+        shape = ShapeFactory.create_shape("Square", 1.0)
+        self.assertEqual(shape.name, "Square", "shape name not got properly")
+        shape = ShapeFactory.create_shape("Rectangle", 1.0, 2.0)
+        self.assertEqual(shape.name, "Rectangle", "shape name not got properly")
+        shape = ShapeFactory.create_shape("Triangle", 3.0, 4.0, 5.0)
+        self.assertEqual(shape.name, "Triangle", "shape name not got properly")
+
     """Circles."""
-    
     def test_circle_radius_negative_value(self):
         """Demonstrates proper handling given a negative radius."""
         try:
@@ -295,14 +304,14 @@ class MyTests(unittest.TestCase):
             self.assertEqual(True, False, "square length is zero")
         except ValueError as value_error:
             self.assertEqual(True, True)
-            
-   def test_square_perimeter(self):
+
+    def test_square_perimeter(self):
         try:
             square_perimeter = Square.perimeter(Square("Square", 1.0))
             self.assertEqual(square_perimeter, 4.0, "square perimeter is wrong")
         except ValueError as value_error:
             self.assertEqual(True, True)
-        
+
     def test_square_area(self):
         try:
             square_area = Square.area(Square("Square", 1.0))

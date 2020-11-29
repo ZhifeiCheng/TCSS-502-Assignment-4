@@ -38,32 +38,32 @@ class DrawingProgramMain:
         drawing_program.add_shape(triangle_2)
         print('Shapes added to DrawingProgram.')
         
-        """Removes shape"""
         drawing_program.remove_shape(square_2)
+        """Removes shape"""
         print('square_2 removed.')
         
-        """Sorts shapes"""
         drawing_program.sort_shape()
+        """Sorts shapes"""
         print('Shapes sorted.')
         
-        """Prints a shape"""
         drawing_program.print_shape(circle_2)
+        """Prints a shape"""
         print('circle_2 printed.')
         
-        """Gets a shape"""
         drawing_program.get_shape(2)
+        """Gets a shape"""
         print('Got shape at index 2.')
         
-        """Sets a shape"""
         drawing_program.set_shape(4, square_2)
+        """Sets a shape"""
         print('Set shape at index 4 as square_2.')
         
-        """Prints shape again"""
         drawing_program.print_shape(circle_2)
+        """Prints shape again"""
         print('circle_2 printed.')
         
-        """Draw all the shapes"""
         for shape in drawing_program:
+            """Draw all the shapes"""
             shape.draw()
             shape.draw_graphic()
         print('Shapes drawn.')

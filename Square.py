@@ -7,8 +7,7 @@ class Square(Shape):
     The Square class is a child class of Shape.
     It provides provide specific implementations of area, perimeter, and graphics of squares.
     """
-    
-    
+
     def __init__(self, name: str, side_length: float) -> Shape:
         """Creates a square with the given name and side length."""
         Shape.__init__(self, name)

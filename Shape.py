@@ -2,20 +2,19 @@ from abc import ABC, abstractmethod
 
 
 class Shape(ABC):
-"""
-An abstract class used to create shapes to be drawn with given properties
-such as name, perimeter, and area. Specific methods depend on the type of shape.
-"""
+    """
+    An abstract class used to create shapes to be drawn with given properties
+    such as name, perimeter, and area. Specific methods depend on the type of shape.
+    """
 
     """Creates a shape with the given name."""
     def __init__(self, name):
-        self.name = name
-        # self.drawer = Shape.draw()
+        self.__name = name
     
     """Returns the name of the shape."""
     @property
-    def get_name(self):
-        return self.name
+    def name(self):
+        return self.__name
     
     """Validates the shape can be made."""
     @abstractmethod
