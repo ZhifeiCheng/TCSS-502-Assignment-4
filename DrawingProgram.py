@@ -18,14 +18,15 @@ class DrawingProgram:
         self.__shape_list.append(shape)
 
     def remove_shape(self, shape: Shape):
-        """Removes a given shape from the list of shapes."""
+        """removes all shapes that match the one passed as a parameter and return in integer value to signify how many
+        of that shape was removed."""
         remain = list(filter(lambda x: x != shape, self.__shape_list))
         count = len(self.__shape_list) - len(remain)
         self.__shape_list = remain
         return count
 
     def print_shape(self, target_shape: Shape):
-        """Prints a given shape."""
+        """Prints all shapes that match the type of the shape passed in both textually and graphically."""
         for shape in self.__shape_list:
             if shape.name == target_shape.name:
                 shape.draw()

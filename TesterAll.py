@@ -1,4 +1,6 @@
 import random
+import sys
+from io import StringIO
 import unittest
 from Circle import Circle
 from DrawingProgram import DrawingProgram
@@ -92,10 +94,23 @@ class MyTests(unittest.TestCase):
         shape_2 = Circle("Circle", 50)
         shape_3 = Triangle("Triangle", 30, 40, 50)
         shape_4 = Circle("Circle", 50)
-        shape_list = [shape_1, shape_2, shape_3, shape_4]
+        shapes = [shape_1, shape_2, shape_3, shape_4]
+        msgs = ["Square, area: 900, perimeter: 120", "Circle, area: 7853.98, perimeter: 314.16",
+                "Triangle, area: 600.0, perimeter: 120", "Circle, area: 7853.98, perimeter: 314.16"]
+        saved_stdout = sys.stdout
         drawing_program = DrawingProgram()
-        for shape in shape_list:
+        for shape in shapes:
             drawing_program.add_shape(shape)
+        try:
+            for idx in range(len(shapes)):
+                out = StringIO()
+                sys.stdout = out
+                shapes[idx].draw()
+                msg = out.getvalue().strip()
+                out.close()
+                self.assertEqual(msg, msgs[idx], "shapes not printed properly")
+        finally:
+            sys.stdout = saved_stdout
 
     """Testing given index."""
     
@@ -366,6 +381,13 @@ class MyTests(unittest.TestCase):
         try:
             Triangle("Triangle", 0.0, 0.0, 0.0)
             self.assertEqual(True, False, "triangle length is zero")
+        except ValueError as value_error:
+            self.assertEqual(True, True)
+
+    def test_triangle_side_lengths_invalid(self):
+        try:
+            Triangle("Triangle", 2.0, 1.0, 3.0)
+            self.assertEqual(True, False, "input lengths can't make a triangle")
         except ValueError as value_error:
             self.assertEqual(True, True)
             
